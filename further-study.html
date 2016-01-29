@@ -53,7 +53,9 @@
 
     var myRevenueMessage = $('#revenue');
 
-    var drinksOrdered = [];
+    // var drinksOrdered = [];
+
+    var drinksOrdered = new Array();
 
     // myImage.src = "static/coffee_beans.jpg";
     // myImage.addEventListener('click', function () { return makeCoffee("brew"); });
@@ -95,6 +97,9 @@
 
     // espresso.addEventListener('click', function () { return makeCoffee("espresso"); });
     $('#espresso').click(revenue);
+    drinksOrdered.push($('#espresso').val());
+    //debugging to test adding to drinkOrdered array
+    alert("length of drinksOrdered is " + drinksOrdered.length);
 
     // latte.addEventListener('click', function () { return makeCoffee("latte"); });
     $('#latte').click(makeCoffee);
