@@ -42,46 +42,69 @@
         <h4>Total: <span id="revenue"><!-- Revenue Message will show up here --></span></h4>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery.js"></script>
 
 <script>
 
-    var myImage = document.getElementById("coffee_image");
-    var myRevenueMessage = document.getElementById("revenue");
+    // var myImage = document.getElementById("coffee_image");
+    // var myRevenueMessage = document.getElementById("revenue");
+
+    var myImage = $('img#coffee_image').attr('src', 'static/coffee_beans.jpg');
+
+    var myRevenueMessage = $('#revenue');
 
     var drinksOrdered = [];
 
-    myImage.src = "static/coffee_beans.jpg";
-    myImage.addEventListener('click', function () { return makeCoffee("brew"); });
+    // myImage.src = "static/coffee_beans.jpg";
+    // myImage.addEventListener('click', function () { return makeCoffee("brew"); });
+
+    $('img#coffee_image').click(makeCoffee);
 
     // Append the drink_type to drinks_ordered and use console.log to view the output
+    alert("drinksOrdered.length is " + drinksOrdered.length);
 
     function makeCoffee(drinkType) {
-        drinksOrdered.push(drinkType);
+        drinksOrdered.push('.btn btn-default');
         console.log(drinksOrdered);
 
         var myRevenue = revenue();
-        myRevenueMessage.innerHTML = "Today's revenues: " + myRevenue;
+        // myRevenueMessage.innerHTML = "Today's revenues: " + myRevenue;
+        $('myRevenueMessage').innerHTML("Today's Revenues: " + myRevenue);
 
-        myImage.setAttribute('src', "static/coffee_machine.jpg");
-        setTimeout(function () { myImage.setAttribute('src', "static/coffee_mug.jpg"); }, 500);
-        setTimeout(function () { myImage.setAttribute('src', "static/coffee_beans.jpg"); }, 1500);
+        // myImage.setAttribute('src', "static/coffee_machine.jpg");
+        // setTimeout(function () { myImage.setAttribute('src', "static/coffee_mug.jpg"); }, 500);
+        // setTimeout(function () { myImage.setAttribute('src', "static/coffee_beans.jpg"); }, 1500);
+
+        $('img#coffee_image').attr('src','static/coffee_machine.jpg');
+         
+        setTimeout(function() { $('img#coffee_image').attr('src', 'static/coffee_mug.jpg'); },500);
+
+        setTimeout(function() { $('img#coffee_image').attr('src', 'static/coffee_beans.jpg'); },1500);
     }
+    
 
 
     // Create variables for Espresso, Latte, and Hot Chocolate;
     // and add an event listener to each that calls make_coffee
-    var espresso = document.getElementById("espresso");
-    var latte = document.getElementById("latte");
-    var hotChocolate = document.getElementById("hot-chocolate");
+    // var espresso = document.getElementById("espresso");
+    var espresso = $('#espresso');
+    // var latte = document.getElementById("latte");
+    var latte = $('#latte');
+    // var hotChocolate = document.getElementById("hot-chocolate");
+    var hotChocolate = $('#hot-chocolate');
 
-    espresso.addEventListener('click', function () { return makeCoffee("espresso"); });
-    latte.addEventListener('click', function () { return makeCoffee("latte"); });
-    hotChocolate.addEventListener('click', function () { return makeCoffee("hot chocolate"); });
+    // espresso.addEventListener('click', function () { return makeCoffee("espresso"); });
+    $('#espresso').click(revenue);
+
+    // latte.addEventListener('click', function () { return makeCoffee("latte"); });
+    $('#latte').click(makeCoffee);
+    // hotChocolate.addEventListener('click', function () { return makeCoffee("hot chocolate"); });
+    $('#hot-chocolate').click(makeCoffee);
 
     // Use this dictionary to calculate profits for the day and log them to the console.
 
     var prices = {"brew": 2.05, "espresso": 3.25, "latte": 4.15, "hot chocolate": 2.50};
-
+    
     function revenue() {
         var total = 0;
         for (var i = 0; i < drinksOrdered.length; i++) {
@@ -90,6 +113,8 @@
         console.log("Total revenue = " + total);
         return total;
     }
+
+
 
 </script>
 
